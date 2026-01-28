@@ -31,9 +31,9 @@ Demonstrates sheet presentation patterns with:
 
 ## Requirements
 
-- iOS 17.0+
-- Xcode 15.0+
-- Swift 5.9+
+- iOS 26.0+
+- Xcode 26.0+
+- Swift 6.2+
 
 ## Getting Started
 
