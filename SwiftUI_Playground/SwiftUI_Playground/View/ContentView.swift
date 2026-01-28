@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     // MARK: - Properties
     @AppColorScheme private var colorScheme
+    @ScreenProtectionEnabled private var screenProtectionEnabled
 
     // MARK: - Body
     var body: some View {
@@ -17,6 +18,7 @@ struct ContentView: View {
             Form {
                 demosSection
                 appearanceSection
+                securitySection
             }
             .navigationTitle("Settings")
         }
@@ -55,6 +57,30 @@ struct ContentView: View {
             Text("Appearance")
         } footer: {
             Text("Choose how the app looks. System will match your device settings.")
+        }
+    }
+
+    private var securitySection: some View {
+        Section {
+            Toggle(isOn: $screenProtectionEnabled) {
+                Label {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Screen Protection")
+                            .font(.body)
+
+                        Text(screenProtectionEnabled ? "Content is hidden during screen sharing" : "Content is visible during screen sharing")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                } icon: {
+                    Image(systemName: screenProtectionEnabled ? "eye.slash.fill" : "eye.fill")
+                        .foregroundStyle(screenProtectionEnabled ? .blue : .secondary)
+                }
+            }
+        } header: {
+            Text("Security")
+        } footer: {
+            Text("When enabled, app content will be blurred during screen recording or screen sharing to protect sensitive information.")
         }
     }
     

@@ -11,14 +11,17 @@ import SwiftUI
 struct SwiftUI_PlaygroundApp: App {
     // MARK: - Properties
     @AppColorScheme private var colorScheme
+    @ScreenProtectionEnabled private var screenProtectionEnabled
     @State private var screenSharingMonitor = ScreenSharingMonitor()
-    
+
     // MARK: - Body
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(screenSharingMonitor)
-//                .screenSharingBlur(isScreenSharing: $screenSharingMonitor.isScreenSharing)
+                .screenSharingBlur(
+                    isScreenSharing: screenProtectionEnabled && screenSharingMonitor.isScreenSharing
+                )
                 .preferredColorScheme(colorScheme.colorScheme)
         }
     }

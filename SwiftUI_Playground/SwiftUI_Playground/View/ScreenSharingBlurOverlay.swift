@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ScreenSharingBlurOverlay: ViewModifier {
     // MARK: - Properties
-    @Binding var isScreenSharing: Bool
-    
+    var isScreenSharing: Bool
+
     // MARK: - Body
     func body(content: Content) -> some View {
         content
@@ -71,7 +71,7 @@ struct ScreenSharingBlurOverlay: ViewModifier {
 
 // MARK: - View Extension
 extension View {
-    func screenSharingBlur(isScreenSharing: Binding<Bool>) -> some View {
+    func screenSharingBlur(isScreenSharing: Bool) -> some View {
         modifier(ScreenSharingBlurOverlay(isScreenSharing: isScreenSharing))
     }
 }
