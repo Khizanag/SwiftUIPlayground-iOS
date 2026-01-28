@@ -24,7 +24,10 @@ extension CardItem {
         CardItem(
             title: "Welcome",
             subtitle: "Getting Started",
-            description: "This is the first card in our collection. Swipe up to see more cards. Each card snaps to the top position automatically.",
+            description: """
+                This is the first card in our collection. Swipe up to see more cards. \
+                Each card snaps to the top position automatically.
+                """,
             bulletPoints: [
                 "Swipe up to go to next card",
                 "Swipe down to go back",
@@ -38,7 +41,10 @@ extension CardItem {
         CardItem(
             title: "Features",
             subtitle: "What's Included",
-            description: "Explore all the amazing features we have to offer. This card demonstrates the variable height capability of the snap scrolling system.",
+            description: """
+                Explore all the amazing features we have to offer. This card demonstrates \
+                the variable height capability of the snap scrolling system.
+                """,
             bulletPoints: [
                 "Custom gesture-based scrolling",
                 "Spring animations for smooth transitions",
@@ -65,7 +71,10 @@ extension CardItem {
         CardItem(
             title: "Statistics",
             subtitle: "Your Progress",
-            description: "Track your achievements and see how far you've come. This card shows your stats at a glance with detailed breakdowns.",
+            description: """
+                Track your achievements and see how far you've come. This card shows \
+                your stats at a glance with detailed breakdowns.
+                """,
             bulletPoints: [
                 "Daily active usage tracking",
                 "Weekly progress reports",
@@ -79,7 +88,10 @@ extension CardItem {
         CardItem(
             title: "Settings",
             subtitle: "Customize Experience",
-            description: "Personalize everything to your liking. Adjust themes, notifications, and more to make the app truly yours.",
+            description: """
+                Personalize everything to your liking. Adjust themes, notifications, \
+                and more to make the app truly yours.
+                """,
             bulletPoints: [
                 "Theme customization options",
                 "Notification preferences",
@@ -95,7 +107,10 @@ extension CardItem {
         CardItem(
             title: "Final Card",
             subtitle: "The End",
-            description: "You've reached the last card in this collection. Swipe down to navigate back through the previous cards.",
+            description: """
+                You've reached the last card in this collection. Swipe down to navigate \
+                back through the previous cards.
+                """,
             bulletPoints: [
                 "Thanks for exploring!",
                 "Swipe down to go back"

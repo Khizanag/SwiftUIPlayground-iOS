@@ -20,56 +20,38 @@ final class ScreenSharingMonitor {
             }
         }
     }
-    
+
     private var cancellables = Set<AnyCancellable>()
-    
+
     // MARK: - Init
     init() {
         startMonitoring()
     }
-    
+
     // MARK: - Methods
     private func startMonitoring() {
-        // Check initial state
         checkScreenSharingState()
-        
-        // Monitor for changes using NotificationCenter
+
         NotificationCenter.default
-            .publisher(
-                for: UIScreen.capturedDidChangeNotification
-            )
-            .sink { [weak self] s in
+            .publisher(for: UIScreen.capturedDidChangeNotification)
+            .sink { [weak self] _ in
                 self?.checkScreenSharingState()
-                print("Got notification")
             }
             .store(in: &cancellables)
-        
-        // Also poll periodically as a backup (some cases might not trigger notification)
-        let timer = Timer.publish(every: 0.5, on: .main, in: .common)
+
+        Timer.publish(every: 0.5, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.checkScreenSharingState()
             }
-        timer.store(in: &cancellables)
+            .store(in: &cancellables)
     }
-    
+
     private func checkScreenSharingState() {
-        // Get screen from connected window scenes (iOS 26.0+ recommended approach)
         let screens = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .compactMap { $0.windows.first?.screen }
-        
-        // Check if any screen is being captured
-        // Fallback to false if no screens are found
-        let newState = screens.isEmpty ? false : screens.contains { $0.isCaptured }
-        
-//        if newState != isScreenSharing {
-            isScreenSharing = newState
-//        }
-    }
-    
-//    deinit {
-//        cancellables.removeAll()
-//    }
-}
 
+        isScreenSharing = !screens.isEmpty && screens.contains { $0.isCaptured }
+    }
+}

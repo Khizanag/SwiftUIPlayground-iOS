@@ -13,4 +13,3 @@ extension Set<PresentationDetent> {
         [.large, .medium]
     }
 }
-

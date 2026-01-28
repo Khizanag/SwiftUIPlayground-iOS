@@ -36,6 +36,7 @@ private extension KeyboardDemoUIKitAnimation {
                 .font(.subheadline.bold())
                 .foregroundStyle(.purple)
 
+            // swiftlint:disable:next line_length
             Text("Uses UIViewRepresentable to wrap UITextField. Keyboard switching happens via reloadInputViews() with a custom crossDissolve animation. Provides the smoothest experience without losing focus.")
                 .font(.caption)
                 .foregroundStyle(.secondary)

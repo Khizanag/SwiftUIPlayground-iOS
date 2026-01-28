@@ -46,6 +46,7 @@ private extension SheetShowroomPage {
                 .font(.subheadline.bold())
                 .foregroundStyle(.blue)
 
+            // swiftlint:disable:next line_length
             Text("This demo shows how to chain multiple sheets together, each with different presentation detents. Tap the button below to start the chain.")
                 .font(.caption)
                 .foregroundStyle(.secondary)

@@ -23,7 +23,7 @@ struct ContentView: View {
             .navigationTitle("Settings")
         }
     }
-    
+
     // MARK: - Private Views
     private var demosSection: some View {
         Section {
@@ -68,7 +68,7 @@ struct ContentView: View {
                         Text("Screen Protection")
                             .font(.body)
 
-                        Text(screenProtectionEnabled ? "Content is hidden during screen sharing" : "Content is visible during screen sharing")
+                        Text(screenProtectionStatusText)
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
@@ -81,16 +81,27 @@ struct ContentView: View {
         } header: {
             Text("Security")
         } footer: {
-            Text("When enabled, app content will be blurred during screen recording or screen sharing to protect sensitive information.")
+            Text(screenProtectionFooterText)
         }
     }
-    
+
+    private var screenProtectionStatusText: String {
+        screenProtectionEnabled
+            ? "Content is hidden during screen sharing"
+            : "Content is visible during screen sharing"
+    }
+
+    private var screenProtectionFooterText: String {
+        "When enabled, app content will be blurred during screen recording " +
+        "or screen sharing to protect sensitive information."
+    }
+
     private func colorSchemeOptionLabel(option: ColorSchemeOption) -> some View {
         Label {
             VStack(alignment: .leading, spacing: 2) {
                 Text(option.rawValue)
                     .font(.body)
-                
+
                 Text(description(for: option))
                     .font(.caption)
                     .foregroundStyle(.secondary)
@@ -99,7 +110,7 @@ struct ContentView: View {
             icon(for: option)
         }
     }
-    
+
     private func icon(for option: ColorSchemeOption) -> some View {
         Group {
             switch option {
@@ -115,15 +126,15 @@ struct ContentView: View {
             }
         }
     }
-    
+
     private func description(for option: ColorSchemeOption) -> String {
         switch option {
         case .light:
-            return "Always use light mode"
+            "Always use light mode"
         case .dark:
-            return "Always use dark mode"
+            "Always use dark mode"
         case .system:
-            return "Follow system setting"
+            "Follow system setting"
         }
     }
 }

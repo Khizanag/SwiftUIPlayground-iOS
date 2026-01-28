@@ -102,13 +102,22 @@ private extension CardScrollView {
             }
             .onEnded { value in
                 let velocity = value.predictedEndTranslation.height - value.translation.height
+                let animation = Animation.spring(
+                    response: configuration.animationResponse,
+                    dampingFraction: configuration.animationDamping
+                )
 
-                withAnimation(.spring(response: configuration.animationResponse, dampingFraction: configuration.animationDamping)) {
-                    if value.translation.height < -configuration.swipeThreshold || velocity < -configuration.velocityThreshold {
+                withAnimation(animation) {
+                    let swipedUp = value.translation.height < -configuration.swipeThreshold
+                    let swipedDown = value.translation.height > configuration.swipeThreshold
+                    let fastSwipeUp = velocity < -configuration.velocityThreshold
+                    let fastSwipeDown = velocity > configuration.velocityThreshold
+
+                    if swipedUp || fastSwipeUp {
                         if currentIndex < cardCount - 1 {
                             currentIndex += 1
                         }
-                    } else if value.translation.height > configuration.swipeThreshold || velocity > configuration.velocityThreshold {
+                    } else if swipedDown || fastSwipeDown {
                         if currentIndex > 0 {
                             currentIndex -= 1
                         }

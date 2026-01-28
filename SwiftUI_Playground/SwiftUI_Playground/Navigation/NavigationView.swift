@@ -45,7 +45,7 @@ struct NavigationView<Root: View>: View {
                     $0.view()
                 }
         }
-        .onChange(of: navigator.selectedPresentationDetent) { oldValue, newValue in
+        .onChange(of: navigator.selectedPresentationDetent) { _, newValue in
             withAnimation(.easeInOut) {
                 animatedSelectedDetent = newValue
             }
@@ -55,6 +55,6 @@ struct NavigationView<Root: View>: View {
             selection: selectedDetentBinding
         )
         .environment(navigator)
-        .presentationBackground(content: { Color.orange } )
+        .presentationBackground { Color.orange }
     }
 }

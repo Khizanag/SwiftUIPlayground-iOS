@@ -56,6 +56,7 @@ private extension KeyboardDemoNumberKeyTap {
                 .font(.subheadline.bold())
                 .foregroundStyle(.blue)
 
+            // swiftlint:disable:next line_length
             Text("Adds a toolbar above the keyboard with \"123\" and \"ABC\" buttons. Tapping \"123\" switches to the full Number Pad (large digits). Tapping \"ABC\" returns to alphabetic keyboard. This is the practical approach since iOS doesn't allow intercepting the system's 123 key.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -325,13 +326,12 @@ struct AccessoryKeyboardTextField: UIViewRepresentable {
         override func layoutSubviews() {
             super.layoutSubviews()
 
-            for subview in subviews {
-                if String(describing: type(of: subview)).contains("ContentView") {
-                    var frame = subview.frame
-                    frame.origin.y = 0
-                    frame.size.height = bounds.height - bottomPadding
-                    subview.frame = frame
-                }
+            for subview in subviews
+                where String(describing: type(of: subview)).contains("ContentView") {
+                var frame = subview.frame
+                frame.origin.y = 0
+                frame.size.height = bounds.height - bottomPadding
+                subview.frame = frame
             }
         }
     }

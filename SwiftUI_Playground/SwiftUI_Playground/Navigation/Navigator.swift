@@ -23,7 +23,7 @@ final class Navigator {
             } else {
                 rootViewSelectedDetent
             }
-            
+
             if selectedPresentationDetent != newSelectedDetent {
                 withAnimation(.easeInOut) {
                     selectedPresentationDetent = newSelectedDetent
@@ -52,4 +52,3 @@ final class Navigator {
         }
     }
 }
-

@@ -38,6 +38,7 @@ private extension KeyboardDemoTimerAnimation {
                 .font(.subheadline.bold())
                 .foregroundStyle(.orange)
 
+            // swiftlint:disable:next line_length
             Text("Uses a small timer delay (0.1s) before switching keyboard types. The native SwiftUI animation smooths the transition. This approach is simple but may have a slight visual flicker.")
                 .font(.caption)
                 .foregroundStyle(.secondary)

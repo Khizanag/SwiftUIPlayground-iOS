@@ -67,4 +67,3 @@ extension View {
         modifier(ScreenSharingBlurOverlay(isScreenSharing: isScreenSharing))
     }
 }
-

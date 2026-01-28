@@ -56,6 +56,7 @@ private extension KeyboardDemoNativeKeyDetection {
                 .font(.subheadline.bold())
                 .foregroundStyle(.indigo)
 
+            // swiftlint:disable:next line_length
             Text("Detects when user types a number or symbol on the alphabetic keyboard (meaning they tapped \"123\"). No toolbar buttons needed. When detected, can auto-switch to full Number Pad.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
@@ -67,6 +68,7 @@ private extension KeyboardDemoNativeKeyDetection {
                 .font(.caption.bold())
                 .foregroundStyle(.orange)
 
+            // swiftlint:disable:next line_length
             Text("Detection happens after the first character is typed on the 123 layout, not on the actual button tap (iOS doesn't expose that event).")
                 .font(.caption2)
                 .foregroundStyle(.secondary)

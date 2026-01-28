@@ -8,6 +8,7 @@
 import SwiftUI
 
 @main
+// swiftlint:disable:next type_name
 struct SwiftUI_PlaygroundApp: App {
     // MARK: - Properties
     @AppColorScheme private var colorScheme
