@@ -74,6 +74,7 @@ struct ContentView: View {
                     }
                 } icon: {
                     Image(systemName: screenProtectionEnabled ? "eye.slash.fill" : "eye.fill")
+                        .contentTransition(.symbolEffect(.replace))
                         .foregroundStyle(screenProtectionEnabled ? .blue : .secondary)
                 }
             }
