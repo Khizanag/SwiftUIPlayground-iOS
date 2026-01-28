@@ -1,0 +1,107 @@
+//
+//  ContentView.swift
+//  SwiftUI_Playground
+//
+//  Created by Giga Khizanishvili on 06.11.25.
+//
+
+import SwiftUI
+
+struct ContentView: View {
+    // MARK: - Properties
+    @AppColorScheme private var colorScheme
+
+    // MARK: - Body
+    var body: some View {
+        NavigationStack {
+            Form {
+                demosSection
+                appearanceSection
+            }
+            .navigationTitle("Settings")
+        }
+    }
+    
+    // MARK: - Private Views
+    private var demosSection: some View {
+        Section {
+            NavigationLink(destination: CardScrollViewShowroomPage()) {
+                Label("Card Scroll Demo", systemImage: "rectangle.stack.fill")
+            }
+
+            NavigationLink(destination: KeyboardShowroomPage()) {
+                Label("Keyboard Showroom", systemImage: "keyboard")
+            }
+
+            NavigationLink(destination: SheetShowroomPage()) {
+                Label("Sheet Showroom", systemImage: "rectangle.stack")
+            }
+        } header: {
+            Text("Demos")
+        } footer: {
+            Text("Explore various UI behaviors and animations.")
+        }
+    }
+
+    private var appearanceSection: some View {
+        Section {
+            Picker("Appearance", selection: $colorScheme) {
+                ForEach(ColorSchemeOption.allCases, id: \.self) { option in
+                    colorSchemeOptionLabel(option: option)
+                        .tag(option)
+                }
+            }
+        } header: {
+            Text("Appearance")
+        } footer: {
+            Text("Choose how the app looks. System will match your device settings.")
+        }
+    }
+    
+    private func colorSchemeOptionLabel(option: ColorSchemeOption) -> some View {
+        Label {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(option.rawValue)
+                    .font(.body)
+                
+                Text(description(for: option))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        } icon: {
+            icon(for: option)
+        }
+    }
+    
+    private func icon(for option: ColorSchemeOption) -> some View {
+        Group {
+            switch option {
+            case .light:
+                Image(systemName: "sun.max.fill")
+                    .foregroundStyle(.yellow)
+            case .dark:
+                Image(systemName: "moon.fill")
+                    .foregroundStyle(.indigo)
+            case .system:
+                Image(systemName: "circle.lefthalf.filled")
+                    .foregroundStyle(.gray)
+            }
+        }
+    }
+    
+    private func description(for option: ColorSchemeOption) -> String {
+        switch option {
+        case .light:
+            return "Always use light mode"
+        case .dark:
+            return "Always use dark mode"
+        case .system:
+            return "Follow system setting"
+        }
+    }
+}
+
+// MARK: - Preview
+#Preview {
+    ContentView()
+}
