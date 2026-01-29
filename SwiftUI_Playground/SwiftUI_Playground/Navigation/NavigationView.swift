@@ -24,19 +24,6 @@ struct NavigationView<Root: View>: View {
         _animatedSelectedDetent = State(initialValue: navigator.selectedPresentationDetent)
     }
 
-    // MARK: - Computed Properties
-    private var selectedDetentBinding: Binding<PresentationDetent> {
-        Binding(
-            get: { animatedSelectedDetent },
-            set: { newValue in
-                withAnimation(.easeInOut) {
-                    animatedSelectedDetent = newValue
-                    navigator.selectedPresentationDetent = newValue
-                }
-            }
-        )
-    }
-
     // MARK: - Body
     var body: some View {
         NavigationStack(path: Bindable(navigator).path) {
@@ -56,5 +43,21 @@ struct NavigationView<Root: View>: View {
         )
         .environment(navigator)
         .presentationBackground { Color.orange }
+    }
+}
+
+// MARK: - Helpers
+
+private extension NavigationView {
+    var selectedDetentBinding: Binding<PresentationDetent> {
+        Binding(
+            get: { animatedSelectedDetent },
+            set: { newValue in
+                withAnimation(.easeInOut) {
+                    animatedSelectedDetent = newValue
+                    navigator.selectedPresentationDetent = newValue
+                }
+            }
+        )
     }
 }

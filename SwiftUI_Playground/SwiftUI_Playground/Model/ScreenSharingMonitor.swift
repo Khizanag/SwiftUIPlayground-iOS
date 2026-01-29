@@ -27,9 +27,12 @@ final class ScreenSharingMonitor {
     init() {
         startMonitoring()
     }
+}
 
-    // MARK: - Methods
-    private func startMonitoring() {
+// MARK: - Monitoring
+
+private extension ScreenSharingMonitor {
+    func startMonitoring() {
         checkScreenSharingState()
 
         NotificationCenter.default
@@ -47,7 +50,7 @@ final class ScreenSharingMonitor {
             .store(in: &cancellables)
     }
 
-    private func checkScreenSharingState() {
+    func checkScreenSharingState() {
         let screens = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .compactMap { $0.windows.first?.screen }

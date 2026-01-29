@@ -23,9 +23,12 @@ struct ContentView: View {
             .navigationTitle("Settings")
         }
     }
+}
 
-    // MARK: - Private Views
-    private var demosSection: some View {
+// MARK: - Subviews
+
+private extension ContentView {
+    var demosSection: some View {
         Section {
             NavigationLink(destination: CardScrollViewShowroomPage()) {
                 Label("Card Scroll Demo", systemImage: "rectangle.stack.fill")
@@ -45,7 +48,7 @@ struct ContentView: View {
         }
     }
 
-    private var appearanceSection: some View {
+    var appearanceSection: some View {
         Section {
             Picker("Appearance", selection: $colorScheme) {
                 ForEach(ColorSchemeOption.allCases, id: \.self) { option in
@@ -60,7 +63,7 @@ struct ContentView: View {
         }
     }
 
-    private var securitySection: some View {
+    var securitySection: some View {
         Section {
             Toggle(isOn: $screenProtectionEnabled) {
                 Label {
@@ -85,18 +88,7 @@ struct ContentView: View {
         }
     }
 
-    private var screenProtectionStatusText: String {
-        screenProtectionEnabled
-            ? "Content is hidden during screen sharing"
-            : "Content is visible during screen sharing"
-    }
-
-    private var screenProtectionFooterText: String {
-        "When enabled, app content will be blurred during screen recording " +
-        "or screen sharing to protect sensitive information."
-    }
-
-    private func colorSchemeOptionLabel(option: ColorSchemeOption) -> some View {
+    func colorSchemeOptionLabel(option: ColorSchemeOption) -> some View {
         Label {
             VStack(alignment: .leading, spacing: 2) {
                 Text(option.rawValue)
@@ -111,7 +103,7 @@ struct ContentView: View {
         }
     }
 
-    private func icon(for option: ColorSchemeOption) -> some View {
+    func icon(for option: ColorSchemeOption) -> some View {
         Group {
             switch option {
             case .light:
@@ -126,8 +118,23 @@ struct ContentView: View {
             }
         }
     }
+}
 
-    private func description(for option: ColorSchemeOption) -> String {
+// MARK: - Helpers
+
+private extension ContentView {
+    var screenProtectionStatusText: String {
+        screenProtectionEnabled
+            ? "Content is hidden during screen sharing"
+            : "Content is visible during screen sharing"
+    }
+
+    var screenProtectionFooterText: String {
+        "When enabled, app content will be blurred during screen recording " +
+        "or screen sharing to protect sensitive information."
+    }
+
+    func description(for option: ColorSchemeOption) -> String {
         switch option {
         case .light:
             "Always use light mode"
@@ -140,6 +147,7 @@ struct ContentView: View {
 }
 
 // MARK: - Preview
+
 #Preview {
     ContentView()
 }
