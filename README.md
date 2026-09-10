@@ -29,8 +29,9 @@ itself, and Back reverses the morph.
   created once, at push time.
 - The detail page wears the card's gradient full bleed, with content on
   translucent surfaces, so the morph lands on continuous colour.
-- A spring press effect, a staggered content reveal, and Reduce Motion and
-  Reduce Transparency fallbacks for both.
+- A spring press effect on the card, with Reduce Motion and Reduce Transparency
+  fallbacks. The zoom is the only motion on the page — nothing else animates in
+  behind it.
 
 ### Card Scroll
 

@@ -11,9 +11,7 @@ struct HeroCardDetailPage: View {
     // MARK: - Properties
     let card: HeroCard
 
-    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
-    @State private var isContentRevealed = false
 
     // MARK: - Body
     var body: some View {
@@ -24,7 +22,6 @@ struct HeroCardDetailPage: View {
         .navigationTitle(card.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
-        .onAppear(perform: revealContent)
     }
 }
 
@@ -86,8 +83,6 @@ private extension HeroCardDetailPage {
             storySection
             highlightsSection
         }
-        .opacity(isContentRevealed ? 1 : 0)
-        .offset(y: isContentRevealed ? 0 : 24)
     }
 
     var statsSection: some View {
@@ -159,21 +154,6 @@ private extension HeroCardDetailPage {
         reduceTransparency
             ? AnyShapeStyle(.background)
             : AnyShapeStyle(.regularMaterial)
-    }
-}
-
-// MARK: - Actions
-
-private extension HeroCardDetailPage {
-    func revealContent() {
-        guard !reduceMotion else {
-            isContentRevealed = true
-            return
-        }
-
-        withAnimation(.smooth(duration: 0.45).delay(0.2)) {
-            isContentRevealed = true
-        }
     }
 }
 
