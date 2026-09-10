@@ -32,8 +32,10 @@ itself, and Back reverses the morph.
   `@Namespace` once. Build it eagerly and the zoom degrades to a slide.
 - The detail page wears the card's gradient full bleed, with content on
   translucent surfaces, so the morph lands on continuous colour.
-- A spring press effect on the card, with Reduce Motion and Reduce Transparency
-  fallbacks. The zoom is the only motion on the page — nothing else animates in
+- The card's label sits where the detail hero's does, at the same corner in the
+  same order, so the zoom grows one into the other instead of crossing two apart.
+- A short press dim on the card that settles before the push, with Reduce Motion
+  and Reduce Transparency fallbacks. The zoom is the only motion on the page — nothing else animates in
   behind it.
 
 ### Card Scroll

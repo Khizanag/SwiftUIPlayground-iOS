@@ -15,7 +15,7 @@ struct PressableCardButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .scaleEffect(scale(isPressed: configuration.isPressed))
-            .animation(.spring(duration: 0.3, bounce: 0.35), value: configuration.isPressed)
+            .animation(.easeOut(duration: 0.16), value: configuration.isPressed)
     }
 }
 
@@ -24,6 +24,6 @@ struct PressableCardButtonStyle: ButtonStyle {
 private extension PressableCardButtonStyle {
     func scale(isPressed: Bool) -> CGFloat {
         guard isPressed, !reduceMotion else { return 1 }
-        return 0.94
+        return 0.97
     }
 }
