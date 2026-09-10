@@ -75,13 +75,13 @@ Sheets presented on top of one another, each step declaring its own
 ## Getting Started
 
 1. Clone the repository
-2. Open `SwiftUI_Playground.xcodeproj`
+2. Open `SwiftUIPlayground.xcodeproj`
 3. Build and run on simulator or device
 
 ## Project Structure
 
 ```
-SwiftUI_Playground/
+SwiftUIPlayground/
 ├── Model/                 # Data models and utilities
 ├── Navigation/            # Custom navigation system
 └── View/
