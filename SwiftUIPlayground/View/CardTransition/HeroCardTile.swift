@@ -15,7 +15,7 @@ struct HeroCardTile: View {
 
     // MARK: - Body
     var body: some View {
-        ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .topLeading) {
             background
             symbolBackdrop
             label
@@ -46,35 +46,24 @@ private extension HeroCardTile {
             .scaledToFit()
             .frame(width: 96)
             .foregroundStyle(.white.opacity(0.22))
-            .offset(x: 28, y: -20)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            .offset(x: 28, y: 20)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
     }
 
+    /// Mirrors `HeroCardDetailPage`'s hero: same order, same corner. The zoom
+    /// then grows one label into the other instead of crossing two apart.
     var label: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            Image(systemName: card.icon)
-                .font(.title3)
-                .foregroundStyle(.white)
+        VStack(alignment: .leading, spacing: 2) {
+            Text(card.subtitle.uppercased())
+                .font(.caption2.weight(.semibold))
+                .foregroundStyle(.white.opacity(0.8))
 
             Text(card.title)
-                .font(.title2.bold())
+                .font(.headline)
                 .foregroundStyle(.white)
-
-            Text(card.subtitle)
-                .font(.footnote)
-                .foregroundStyle(.white.opacity(0.85))
         }
         .padding(16)
         .frame(maxWidth: .infinity, alignment: .leading)
-        .background(labelScrim)
-    }
-
-    var labelScrim: some View {
-        LinearGradient(
-            colors: [.black.opacity(0.35), .clear],
-            startPoint: .bottom,
-            endPoint: .top
-        )
     }
 }
 
