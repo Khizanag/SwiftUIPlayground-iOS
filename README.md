@@ -25,8 +25,11 @@ itself, and Back reverses the morph.
 
 - `matchedTransitionSource(id:in:)` on the source card, paired with
   `.navigationTransition(.zoom(sourceID:in:))` on the pushed page.
-- Value-based `navigationDestination`, so the page and its `@Namespace` are
-  created once, at push time.
+- The push runs through `Navigator`, not a `NavigationLink` — the zoom binds to
+  the transition source and the destination's `sourceID`, so how the value
+  reaches the path does not matter.
+- The page is built only when pushed, so it registers its destination and its
+  `@Namespace` once. Build it eagerly and the zoom degrades to a slide.
 - The detail page wears the card's gradient full bleed, with content on
   translucent surfaces, so the morph lands on continuous colour.
 - A spring press effect on the card, with Reduce Motion and Reduce Transparency

@@ -11,12 +11,15 @@ import SwiftUI
 ///
 /// Every tile is a `matchedTransitionSource` and the pushed page carries the
 /// matching `.navigationTransition(.zoom(sourceID:in:))`, so a tap morphs the
-/// card into a full detail page and Back reverses the morph. The destination is
-/// value-based, which keeps the page — and its `@Namespace` — created once, at
-/// push time; building it eagerly registers the destination twice and the zoom
-/// silently degrades to a slide.
+/// card into a full detail page and Back reverses the morph. The push goes
+/// through `Navigator`, not a `NavigationLink` — the zoom binds to the source
+/// and the destination's `sourceID`, so how the value reaches the path is
+/// irrelevant. What does matter: the page is built only when pushed, so it
+/// registers its destination — and its `@Namespace` — once. Build it eagerly
+/// and the destination is registered twice, and the zoom degrades to a slide.
 struct CardTransitionShowroomPage: View {
     // MARK: - Properties
+    @Environment(Navigator.self) private var navigator
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @Namespace private var cardNamespace
 
@@ -42,14 +45,16 @@ private extension CardTransitionShowroomPage {
     var cardGrid: some View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(cards) { card in
-                cardLink(for: card)
+                cardButton(for: card)
             }
         }
         .padding(16)
     }
 
-    func cardLink(for card: HeroCard) -> some View {
-        NavigationLink(value: card) {
+    func cardButton(for card: HeroCard) -> some View {
+        Button {
+            navigator.push(card)
+        } label: {
             HeroCardTile(card: card)
         }
         .buttonStyle(PressableCardButtonStyle())
