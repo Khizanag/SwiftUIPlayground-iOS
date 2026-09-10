@@ -21,6 +21,9 @@ struct ContentView: View {
                 securitySection
             }
             .navigationTitle("Settings")
+            .navigationDestination(for: DemoRoute.self) { route in
+                route.view()
+            }
         }
     }
 }
@@ -30,16 +33,10 @@ struct ContentView: View {
 private extension ContentView {
     var demosSection: some View {
         Section {
-            NavigationLink(destination: CardScrollViewShowroomPage()) {
-                Label("Card Scroll Demo", systemImage: "rectangle.stack.fill")
-            }
-
-            NavigationLink(destination: KeyboardShowroomPage()) {
-                Label("Keyboard Showroom", systemImage: "keyboard")
-            }
-
-            NavigationLink(destination: SheetShowroomPage()) {
-                Label("Sheet Showroom", systemImage: "rectangle.stack")
+            ForEach(DemoRoute.allCases) { route in
+                NavigationLink(value: route) {
+                    Label(route.title, systemImage: route.icon)
+                }
             }
         } header: {
             Text("Demos")
