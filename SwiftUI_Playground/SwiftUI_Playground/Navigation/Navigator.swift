@@ -6,49 +6,30 @@
 //
 
 import SwiftUI
-import Observation
 
+/// Drives the app's navigation stack, so any screen can push without owning the
+/// stack or reaching for a `NavigationLink`.
+///
+/// The path is heterogeneous: each screen registers `navigationDestination(for:)`
+/// for the values it knows how to present, and pushes those values by type.
+@MainActor
 @Observable
 final class Navigator {
     // MARK: - Properties
-    let name: String?
-
-    var selectedPresentationDetent: PresentationDetent
-
-    var path: [NavigationDestination] = [] {
-        didSet {
-            print("Name: \(name, default: "Unnamed") - Path: \(path)")
-            let newSelectedDetent = if let last = path.last {
-                last.selectedPresentationDetent
-            } else {
-                rootViewSelectedDetent
-            }
-
-            if selectedPresentationDetent != newSelectedDetent {
-                withAnimation(.easeInOut) {
-                    selectedPresentationDetent = newSelectedDetent
-                }
-            }
-        }
-    }
-
-    let rootViewSelectedDetent: PresentationDetent
-
-    // MARK: - Init
-    init(
-        name: String? = nil,
-        rootViewSelectedDetent: PresentationDetent
-    ) {
-        self.name = name
-        self.rootViewSelectedDetent = rootViewSelectedDetent
-        self.selectedPresentationDetent = rootViewSelectedDetent
-    }
+    var path = NavigationPath()
 
     // MARK: - Methods
-    func push(_ destination: NavigationDestination) {
-        withAnimation(.easeInOut) {
-            selectedPresentationDetent = destination.selectedPresentationDetent
-            path.append(destination)
-        }
+    func push(_ destination: some Hashable) {
+        path.append(destination)
+    }
+
+    func pop() {
+        guard !path.isEmpty else { return }
+
+        path.removeLast()
+    }
+
+    func popToRoot() {
+        path.removeLast(path.count)
     }
 }

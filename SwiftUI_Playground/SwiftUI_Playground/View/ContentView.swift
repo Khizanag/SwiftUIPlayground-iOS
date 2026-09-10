@@ -11,10 +11,11 @@ struct ContentView: View {
     // MARK: - Properties
     @AppColorScheme private var colorScheme
     @ScreenProtectionEnabled private var screenProtectionEnabled
+    @State private var navigator = Navigator()
 
     // MARK: - Body
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $navigator.path) {
             Form {
                 demosSection
                 appearanceSection
@@ -25,6 +26,7 @@ struct ContentView: View {
                 route.view()
             }
         }
+        .environment(navigator)
     }
 }
 
