@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+/// Gesture example: a hand-rolled snap scroller.
+///
+/// Cards of differing height stack, trail behind with a parallax offset, and
+/// settle on a spring. A `DragGesture` and its end velocity drive the current
+/// index, rather than `ScrollView` paging, so each card keeps its own geometry.
 struct CardScrollViewShowroomPage: View {
     // MARK: - Properties
     @State private var currentIndex: Int = 0

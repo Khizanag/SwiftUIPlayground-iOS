@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+/// Navigation animation example: a card that becomes the page.
+///
+/// Every tile is a `matchedTransitionSource` and the pushed page carries the
+/// matching `.navigationTransition(.zoom(sourceID:in:))`, so a tap morphs the
+/// card into a full detail page and Back reverses the morph. The destination is
+/// value-based, which keeps the page — and its `@Namespace` — created once, at
+/// push time; building it eagerly registers the destination twice and the zoom
+/// silently degrades to a slide.
 struct CardTransitionShowroomPage: View {
     // MARK: - Properties
     @Environment(\.accessibilityReduceMotion) private var reduceMotion

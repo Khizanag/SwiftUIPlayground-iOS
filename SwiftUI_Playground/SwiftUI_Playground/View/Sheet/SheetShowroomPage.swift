@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+/// Presentation example: sheets chained on top of one another.
+///
+/// Each step declares its own `presentationDetents`, so the stack grows and
+/// shrinks as sheets open and close.
 struct SheetShowroomPage: View {
     @State private var isSheetPresented = false
 

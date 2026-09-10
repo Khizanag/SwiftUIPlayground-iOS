@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+/// Keyboard example: four ways to swap the keyboard under a focused field.
+///
+/// A timer-driven refocus, a UIKit wrapper with its own transition, a 123/ABC
+/// toolbar above the keyboard, and native detection of the numeric layout —
+/// the same problem solved four ways, side by side.
 struct KeyboardShowroomPage: View {
     var body: some View {
         List {

@@ -6,28 +6,61 @@ A collection of SwiftUI demos, experiments, and reusable components showcasing w
 
 This repository serves as a playground for exploring SwiftUI capabilities, demonstrating various UI patterns, animations, and techniques. Each demo is self-contained and can be used as a reference or starting point for your own projects.
 
-## Features
+## Demos
 
-### Card Scroll Demo
-Interactive card-based scrolling interface with smooth animations and gesture handling.
+Each demo is one scene, opened from the list on launch. They are independent —
+read one without reading the others.
+
+| Scene | Kind of example | What it demonstrates |
+|---|---|---|
+| Card Transition | Navigation animation | A card that morphs into a full page and back |
+| Card Scroll | Gesture-driven layout | A snap scroller built from a drag gesture |
+| Keyboard Showroom | Keyboard and focus | Four ways to swap the keyboard of a focused field |
+| Sheet Showroom | Presentation | Sheets chained on top of one another |
+
+### Card Transition
+
+A grid of cards; tapping one pushes a detail page that grows out of the card
+itself, and Back reverses the morph.
+
+- `matchedTransitionSource(id:in:)` on the source card, paired with
+  `.navigationTransition(.zoom(sourceID:in:))` on the pushed page.
+- Value-based `navigationDestination`, so the page and its `@Namespace` are
+  created once, at push time.
+- The detail page wears the card's gradient full bleed, with content on
+  translucent surfaces, so the morph lands on continuous colour.
+- A spring press effect, a staggered content reveal, and Reduce Motion and
+  Reduce Transparency fallbacks for both.
+
+### Card Scroll
+
+A stack of cards with differing heights that snap into place as you drag.
+
+- A `DragGesture` and its end velocity drive the index, instead of `ScrollView`
+  paging.
+- Cards trail behind with a parallax offset and settle on a spring.
 
 ### Keyboard Showroom
-Multiple approaches to keyboard interaction and animation:
-- Native key detection
-- Number key tap handling
-- Timer-based animations
-- UIKit animation integration
+
+The same problem — swapping the keyboard under a focused field — solved four
+ways, side by side.
+
+- A timer-driven refocus with a native animation.
+- A UIKit wrapper carrying its own transition.
+- A 123/ABC toolbar above the keyboard.
+- Native detection of the numeric layout, with no extra UI.
 
 ### Sheet Showroom
-Demonstrates sheet presentation patterns with:
-- Dynamic presentation detents
-- Navigation within sheets
-- Custom sheet transitions
 
-### Additional Features
-- **Dynamic Color Scheme**: Switch between light, dark, and system appearance
-- **Screen Sharing Detection**: Monitor and respond to screen recording/sharing states
-- **Custom Navigation**: Flexible navigation system with presentation detent support
+Sheets presented on top of one another, each step declaring its own
+`presentationDetents`, so the stack grows and shrinks as it opens and closes.
+
+### App-level behaviour
+
+- **Dynamic colour scheme**: light, dark, or system appearance.
+- **Screen sharing detection**: blurs content while the screen is recorded or
+  shared.
+- **Custom navigation**: a navigation stack that tracks presentation detents.
 
 ## Requirements
 
@@ -48,9 +81,10 @@ SwiftUI_Playground/
 ├── Model/                 # Data models and utilities
 ├── Navigation/            # Custom navigation system
 └── View/
-    ├── CardScroll/        # Card scrolling demos
+    ├── CardScroll/        # Card scrolling demo
+    ├── CardTransition/    # Card to page zoom transition demo
     ├── Keyboard/          # Keyboard interaction demos
-    └── Sheet/             # Sheet presentation demos
+    └── Sheet/             # Sheet presentation demo
 ```
 
 ## License
