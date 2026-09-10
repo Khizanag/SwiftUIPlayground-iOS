@@ -19,7 +19,6 @@ struct HeroCardDetailPage: View {
             background
             content
         }
-        .navigationTitle(card.title)
         .navigationBarTitleDisplayMode(.inline)
         .toolbarColorScheme(.dark, for: .navigationBar)
     }
