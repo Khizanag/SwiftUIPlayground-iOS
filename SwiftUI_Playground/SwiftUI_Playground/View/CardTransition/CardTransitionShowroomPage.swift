@@ -27,7 +27,7 @@ struct CardTransitionShowroomPage: View {
         ScrollView {
             cardGrid
         }
-        .background(Color(UIColor.systemGroupedBackground))
+        .background(.background.secondary)
         .navigationTitle("Card Transition")
         .navigationBarTitleDisplayMode(.inline)
         .navigationDestination(for: HeroCard.self) { card in

@@ -157,7 +157,7 @@ private extension HeroCardDetailPage {
     /// Opaque fallback keeps the sections readable when Reduce Transparency is on.
     var surfaceStyle: AnyShapeStyle {
         reduceTransparency
-            ? AnyShapeStyle(Color(UIColor.secondarySystemGroupedBackground))
+            ? AnyShapeStyle(.background)
             : AnyShapeStyle(.regularMaterial)
     }
 }
