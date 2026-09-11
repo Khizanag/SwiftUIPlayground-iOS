@@ -10,6 +10,7 @@ import SwiftUI
 enum DemoRoute: CaseIterable, Identifiable, Hashable {
     case cardScroll
     case cardTransition
+    case glassToolbar
     case keyboard
     case sheet
 
@@ -22,6 +23,8 @@ enum DemoRoute: CaseIterable, Identifiable, Hashable {
             "Card Scroll Demo"
         case .cardTransition:
             "Card Transition Demo"
+        case .glassToolbar:
+            "Glass Toolbar Showroom"
         case .keyboard:
             "Keyboard Showroom"
         case .sheet:
@@ -35,6 +38,8 @@ enum DemoRoute: CaseIterable, Identifiable, Hashable {
             "rectangle.stack.fill"
         case .cardTransition:
             "square.on.square.dashed"
+        case .glassToolbar:
+            "circle.lefthalf.striped.horizontal"
         case .keyboard:
             "keyboard"
         case .sheet:
@@ -50,6 +55,8 @@ enum DemoRoute: CaseIterable, Identifiable, Hashable {
             CardScrollViewShowroomPage()
         case .cardTransition:
             CardTransitionShowroomPage()
+        case .glassToolbar:
+            GlassToolbarShowroomPage()
         case .keyboard:
             KeyboardShowroomPage()
         case .sheet:
