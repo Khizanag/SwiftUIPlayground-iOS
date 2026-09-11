@@ -14,6 +14,7 @@ read one without reading the others.
 | Scene | Kind of example | What it demonstrates |
 |---|---|---|
 | Card Transition | Navigation animation | A card that morphs into a full page and back |
+| Glass Toolbar | iOS 26 Liquid Glass | The navigation bar and toolbar, live-configurable |
 | Card Scroll | Gesture-driven layout | A snap scroller built from a drag gesture |
 | Keyboard Showroom | Keyboard and focus | Four ways to swap the keyboard of a focused field |
 | Sheet Showroom | Presentation | Sheets chained on top of one another |
@@ -37,6 +38,27 @@ itself, and Back reverses the morph.
 - A short press dim on the card that settles before the push, with Reduce Motion
   and Reduce Transparency fallbacks. The zoom is the only motion on the page — nothing else animates in
   behind it.
+
+### Glass Toolbar
+
+Every control on the page rewrites the page's own chrome, so the bar you are
+looking at is the specimen.
+
+- Toolbar content: `ToolbarItem`, `ToolbarItemGroup`, `ToolbarSpacer(.fixed)` vs
+  `.flexible`, and `sharedBackgroundVisibility` to split a group out of its
+  shared glass.
+- Glass buttons: `.buttonStyle(.glass)`, `.glassProminent`, `.borderless`, with
+  an optional `tint`.
+- Bar chrome: `toolbarBackgroundVisibility`, `toolbarColorScheme`,
+  `toolbarTitleDisplayMode` (including `.inlineLarge`), `navigationSubtitle`,
+  and `toolbarRole`.
+- Scroll edge: `scrollEdgeEffectStyle` as `.automatic` / `.soft` / `.hard`,
+  applied to the top, bottom, or all edges.
+- Glass surfaces: `GlassEffectContainer`, `.glassEffect` with `.regular` vs
+  `.clear`, `.tint`, `.interactive`, and `glassEffectUnion` to merge separate
+  chips into one shape.
+- A bottom `safeAreaBar` of glass actions, and `backgroundExtensionEffect` on
+  the header.
 
 ### Card Scroll
 
